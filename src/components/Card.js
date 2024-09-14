@@ -1,8 +1,33 @@
 import React from "react";
 import { FcLike } from "react-icons/fc";
+import { FcLikePlaceholder } from "react-icons/fc";
+
+import { toast } from "react-toastify";
 
 const Card = (props)=>{
     let course = props.course;
+    let likedCourses = props.likedCourses;
+    let setLikedCourses = props.setLikedCourses;
+
+    function clickHandeler(){
+        // logic
+        if(likedCourses.includes(course.id)){
+            // pehle se liked hua hai
+            setLikedCourses((prev)=> prev.filter((cid)=>cid !== course.id));
+            toast.warning("liked removed");
+        }else{
+            // phale se like nahi hai yeh course
+            // insert karna hai yeh course liked course me
+            if(likedCourses.length ===0){
+                setLikedCourses([course.id]);
+            }else{
+                // non empty phale se
+                setLikedCourses((prev) => [...prev, course.id])
+            }
+            toast.success("liked Successfully")
+        }
+    }
+
     return(
         <div className="bg-slate-900 text-white relative">
             <div className="relative">
@@ -14,7 +39,12 @@ const Card = (props)=>{
                     rounded-full
                     flex justify-center items-center
                     ">
-                        <button><FcLike /></button>
+                        <button onClick={clickHandeler}> 
+                        {
+                        likedCourses.includes(course.id)?(<FcLike />): (<FcLikePlaceholder />)
+                        }
+                        
+                    </button>
                     </div>
             </div>
            

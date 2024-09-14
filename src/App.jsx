@@ -28,7 +28,7 @@ const App = ()=> {
   
   useEffect(()=>{
     fetchData();
-  },[])
+  },[]) 
 
 
   return (
