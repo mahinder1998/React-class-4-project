@@ -7,7 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <div className="min-h-screen">
+  <div className="min-h-screen h-full bg-slate-500">
   <App />
   <ToastContainer/>
   </div>

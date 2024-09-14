@@ -4,19 +4,23 @@ import Card from "./Card";
 const Cards = (props)=>{
     let courses = props.courses;
     //console.log(courses, "courses");  
+    let category = props.category;
 
     const [likedCourses, setLikedCourses] = useState([]);
 
     function getCourses(){
-        let allCourses = [];
-        console.log(allCourses, "before")
-        Object.values(courses).forEach((array) => {
-            array.forEach((coursesData)=>{
-                allCourses.push(coursesData);
+        if(category === "All"){
+            let allCourses = [];
+            Object.values(courses).forEach((array) => {
+                array.forEach((coursesData)=>{
+                    allCourses.push(coursesData);
+                })
             })
-        })
-        console.log(allCourses, "after")
-        return allCourses;
+            return allCourses;
+        }else{
+            // only specific category array data
+            return courses[category];
+        }
     }
 
     return(

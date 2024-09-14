@@ -1,6 +1,5 @@
 import React from "react";
-import { FcLike } from "react-icons/fc";
-import { FcLikePlaceholder } from "react-icons/fc";
+import { FcLikePlaceholder, FcLike } from "react-icons/fc";
 
 import { toast } from "react-toastify";
 
@@ -30,8 +29,8 @@ const Card = (props)=>{
 
     return(
         <div className="bg-slate-900 text-white relative">
-            <div className="relative">
-                <img src={course.image.url} alt="img"></img>
+            <div className="relative pt-[calc(720/1280*100%)]">
+                <img src={course.image.url} alt="img" className="absolute top-0 left-0 w-full" ></img>
                 <div className="absolute right-3 bottom-[-14px]
                     w-8
                     h-8
@@ -50,7 +49,11 @@ const Card = (props)=>{
            
             <div className="p-3">
                 <p className="text-2xl pb-2 text-gray-50">{course.title}</p>
-                <p className="text-sm">{course.description}</p>
+                <p className="text-sm">
+                    {course.description.length > 150 ?
+                    (course.description.substr(0, 150)) + "..."
+                    :(course.description)}
+                </p>
             </div>
         </div>
     )
