@@ -2,6 +2,13 @@ import React from "react";
 
 const Filter = (props)=>{
     let filterData = props.filterData;
+    let category = props.category;
+    let setCategory = props.setCategory;
+
+    function filterHandler(title){
+        console.log(title)
+        setCategory(title)
+    }
 
     return(
         <div className="container mx-auto">
@@ -11,8 +18,10 @@ const Filter = (props)=>{
                 {
                     filterData.map((data)=>{
                     return <button key={data.id}
-                    className="text-white bg-slate-800 py-2 px-3 rounded-md"
-                        
+                    className={`text-white bg-slate-800 py-2 px-3 rounded-md
+                        ${category === data.title ? "border-2 border-white " :""} 
+                    `}
+                    onClick={()=> filterHandler(data.title)}    
                     >{data.title}</button>
                     })
                 }
